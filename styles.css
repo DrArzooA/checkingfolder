@@ -8,6 +8,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #f8f9fa;
     color: #495057;
+    line-height: 1.6; /* Added default line-height */
 }
 
 a {
@@ -21,14 +22,69 @@ ul {
     margin: 0;
 }
 
-/* Header Styles */
+/* --- Utility Classes --- */
+
+/* Stack: For vertical arrangement with spacing */
+.stack {
+    display: flex;
+    flex-direction: column;
+    /* Ensure correct syntax for gap */
+    gap: 1em;
+    /* align-items centers flex items horizontally */
+    align-items: center;
+}
+
+/* Centre: For text alignment and block centering */
+.centre {
+    text-align: center;
+    /* margin auto only works effectively on block elements with defined width */
+    /* Often used with max-width on containers */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cover: For vertically centering content within a container */
+.cover {
+    display: flex; /* Changed from block to flex */
+    flex-direction: column;
+    min-height: 30vh; /* Give it some minimum height */
+    padding: 2rem; /* Add some padding */
+}
+
+.cover > .content {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* Cluster: For horizontal arrangement with wrapping */
+.cluster {
+    display: flex;
+    flex-wrap: wrap;
+    /* Use gap for spacing instead of margins on children */
+    gap: 1.5rem;
+    /* Center items horizontally within the cluster */
+    justify-content: center;
+    /* Align items vertically if they wrap */
+    align-items: center;
+}
+
+/* Removed unused cluster modifier */
+/* .cluster--end-aligned { align-items: flex-end; } */
+
+/* Spacing between direct children using lobotomized owl selector */
+.stack > * + *,
+.content > * + * { /* Applied to footer content as well */
+    margin-top: 1.5rem; /* Consistent spacing */
+}
+
+
+/* --- Header Styles --- */
 .site-header {
     background-color: #ffffff;
     padding: 15px 0;
     border-bottom: 1px solid #e9ecef;
 }
 
-/* Container to manage layout */
 .header-container {
     max-width: 1140px;
     margin: 0 auto;
@@ -38,34 +94,29 @@ ul {
     align-items: center;
 }
 
-/* Logo Styles - Simplified */
 .logo {
-    display: block; /* Keep the link as a block */
-    /* Optional: Adjust line-height if needed for alignment,
-       but align-items: center on container usually handles it */
+    display: block;
     line-height: 1;
 }
 
 .logo img {
-    height: 40px; /* Control the height of the SVG logo */
-    width: auto;  /* Maintain aspect ratio */
-    display: block; /* Prevents extra space below the image */
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
-
-/* Navigation Styles */
 .main-navigation {
-   margin-left: auto;
-   margin-right: 40px;
+   margin-left: auto; /* Pushes nav right */
+   margin-right: 40px; /* Space before buttons */
 }
 
 .main-navigation ul {
     display: flex;
+    gap: 35px; /* Use gap for spacing */
 }
 
-.main-navigation li {
-    margin-left: 35px;
-}
+/* Removed margin-left from li as gap is used */
+/* .main-navigation li { margin-left: 35px; } */
 
 .main-navigation a {
     color: #495057;
@@ -79,12 +130,13 @@ ul {
     color: #000000;
 }
 
-/* Action Button Styles */
 .action-buttons {
     display: flex;
     align-items: center;
+    gap: 12px; /* Use gap for spacing */
 }
 
+/* Removed margin-left from btn as gap is used */
 .btn {
     padding: 9px 22px;
     border-radius: 6px;
@@ -92,7 +144,7 @@ ul {
     font-weight: 500;
     text-align: center;
     display: inline-block;
-    margin-left: 12px;
+    /* margin-left: 12px; */ /* Replaced by gap on parent */
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     line-height: 1.5;
@@ -109,6 +161,18 @@ ul {
     border-color: #23272b;
 }
 
+/* Added definition for the accent button */
+.btn-primary--accent {
+    background-color: #0d6efd; /* Example accent color */
+    border-color: #0d6efd;
+    color: #ffffff;
+}
+
+.btn-primary--accent:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
 .btn-secondary {
     background-color: #ffffff;
     color: #343a40;
@@ -118,94 +182,81 @@ ul {
 .btn-secondary:hover {
     background-color: #f8f9fa;
 }
-.cluster--end-aligned{
-    align-items: flex-end;
+
+
+/* --- Hero Section Styles --- */
+.hero-section {
+    padding: 60px 20px; /* Add vertical padding */
+    max-width: 800px; /* Limit width for better readability */
+    /* stack and centre classes handle layout */
+    margin-bottom: 40px; /* Space below hero */
 }
-.stack{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    align-items: center;
+
+.hero__image {
+    /* padding: 3em; */ /* Padding might not be needed, margin is better for spacing */
+    margin-top: 2.5em; /* Space above image */
+    max-width: 80%; /* Control image size relative to container */
+    height: auto;
+    display: block; /* Ensure it behaves as a block */
+}
+
+/* --- Features Section Styles --- */
+.feature-container {
+    max-width: 1140px; /* Limit width */
+    padding: 40px 20px; /* Add padding */
+    /* cluster and centre classes handle layout */
+    margin-bottom: 40px; /* Space below features */
+}
+
+.feature {
+    /* stack class handles internal layout */
+    flex-basis: 280px; /* Suggest a base width for wrapping */
+    flex-grow: 1; /* Allow features to grow */
+    padding: 20px; /* Add padding inside each feature box */
+    background-color: #ffffff; /* Optional: Add background */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Optional: Add subtle shadow */
+}
+
+.feature__image {
+    max-width: 80px; /* Control feature image size */
+    height: auto;
+}
+
+.feature__title {
+    font-size: 1.25rem;
+    margin-top: 1rem; /* Ensure consistent spacing if stack gap isn't enough */
+    color: #343a40;
+}
+
+.feature__description {
+    font-size: 0.95rem;
+    color: #6c757d;
 }
 
 
-.centre{
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto 
-}
-    
-.cover{
-    display: flex;
-    flex-direction: column;
-}
-.cover > .content{
-    margin-top: auto;
-    margin-bottom: auto;
-}
-     
-.footer{
-    height: 400px;
+/* --- Footer Styles --- */
+.footer {
+    /* height: 400px; */ /* Avoid fixed height, use min-height with cover */
+    min-height: 300px; /* Ensure enough height for vertical centering */
+    background-color: #343a40; /* Dark background for contrast */
+    color: #f8f9fa; /* Light text color */
+    /* cover class handles vertical centering */
 }
 
-.footer > .content > *+*{
-    margin-top: 2rem;
-}
- 
-.cluster {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
+.footer > .content {
+    /* stack and centre classes handle layout */
+    max-width: 600px; /* Limit width of content */
 }
 
-.cluster > * {
-    margin: 0.5rem;
+.footer h2 {
+    font-size: 1.75rem;
+    font-weight: 500;
 }
 
-.sidebar-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.sidebar{
-    flex-basis: 40rem;
-    flex-grow: 1;
-}
-
-.not-sidebar{
-    flex-basis: 0;
-    flex-grow: 999;
-    min-width: 50%;
-}
-
-.hero__cta{
-    margin-top:auto;
-    margin-bottom: auto;
-    padding: 2rem;
-}
-
-.hero__image{
-    padding: 3em;
-}
-
-.hero__cta > * + * {
-    margin-top: 1rem;
-}
-
-.stack{
-    display: flex;
-    flex-direction: column;
-    gap; 1em;
-    align-items: center;
-}
-
-.cluster--end-aligned{
-    align-items: flex-end;
-}
-
-.footer > * {
-    margin: 1em;
-}
+/* Removed redundant/unused CSS */
+/* .sidebar-container, .sidebar, .not-sidebar */
+/* .hero__cta */
+/* .cluster--end-aligned */
+/* Removed duplicate .stack */
+/* Removed .footer > * { margin: 1em; } - potentially conflicting */

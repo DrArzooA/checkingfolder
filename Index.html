@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Example with SVG Logo</title>
+    <title>Layout Composition Practice</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,7 +11,7 @@
 
     <header class="site-header">
         <div class="header-container">
-            <!-- Logo - Simplified using SVG -->
+            <!-- Logo -->
             <a href="#" class="logo">
                 <img src="https://info20005.github.io/Layout-Composition/img/logo.svg" alt="Logoipsum Logo">
             </a>
@@ -33,43 +33,48 @@
         </div>
     </header>
 
-    <!-- Rest of the page content would go here -->
-    <!-- Example Content -->
-    <main style="padding: 40px; text-align: center;">
+    <!-- Hero Section -->
+    <!-- Added stack and centre classes, removed inline styles -->
+    <main class="hero-section stack centre">
         <h1>A new way of practicing layout composition</h1>
-        <h3>You can use this website to practice your layout composition skills. </h3>
-        <a class="btn btn-primary btn-primary--accent">Get started</a>     
-<img src="https://info20005.github.io/Layout-Composition/img/hero-image.svg" alt="hero image" class="hero__image">
+        <h3>You can use this website to practice your layout composition skills.</h3>
+        <!-- Added missing --accent modifier class -->
+        <a href="#" class="btn btn-primary btn-primary--accent">Get started</a>
+        <img src="https://info20005.github.io/Layout-Composition/img/hero-image.svg" alt="hero image" class="hero__image">
     </main>
-    <div class="feature-container">
-        <div class="feature">
+
+    <!-- Features Section -->
+    <!-- Added cluster and centre classes to container, added stack to each feature -->
+    <div class="feature-container cluster centre">
+        <div class="feature stack">
             <img class="feature__image" src="https://info20005.github.io/Layout-Composition/img/stack.svg" alt="stack">
-            <h3 class="feature__title">The Stack</h3>            
-            <p class="feature__description ">This website contain many opportunities for stacked layouts</p>
-    
+            <h3 class="feature__title">The Stack</h3>
+            <p class="feature__description">This website contains many opportunities for stacked layouts</p>
         </div>
-    
-        <div class="feature">
+
+        <div class="feature stack">
             <img class="feature__image" src="https://info20005.github.io/Layout-Composition/img/cluster.svg" alt="cluster">
-            <h3 class="feature__title">The Cluster</h3>            
+            <h3 class="feature__title">The Cluster</h3>
             <p class="feature__description">Can you picture which components could be organised in a cluster?</p>
         </div>
-    
-        <div class="feature">
+
+        <div class="feature stack">
             <img class="feature__image" src="https://info20005.github.io/Layout-Composition/img/centre.svg" alt="centre">
-    
-    <h3 class="feature__title">The Centre</h3>            
-    <p class="feature__description">Not too far to the right, 
-    not too far to the left. Pure balance</p>
-            
+            <h3 class="feature__title">The Centre</h3>
+            <p class="feature__description">Not too far to the right, not too far to the left. Pure balance</p>
         </div>
     </div>
-    <div class="footer stack centre cover">
-        <div class="content">
+
+    <!-- Footer Section -->
+    <!-- Kept 'cover' for vertical centering, added background color -->
+    <footer class="footer cover">
+        <!-- Added 'stack' and 'centre' to the content div for layout -->
+        <div class="content stack centre">
             <h2>Become a layout ninja today!</h2>
-            <a class="btn btn-primary btn-primary--accent">Get started</a>
+             <!-- Added missing --accent modifier class -->
+            <a href="#" class="btn btn-primary btn-primary--accent">Get started</a>
         </div>
-    </div>
+    </footer>
 
 </body>
 </html>
